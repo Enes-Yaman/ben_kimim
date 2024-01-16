@@ -1,3 +1,4 @@
+
 import os
 
 # Paths
@@ -14,9 +15,10 @@ html_content = f"""
     <link rel="stylesheet" href="{css_file}">
 </head>
 <body>
-    <div id="image-container"></div>
+    <button id="select-person-button">Select Your Person</button>
+    <div id="selected-person-name"></div>
+    <div id="persons-container"></div>
     <button id="reset-button">Reset</button>
-    <button id="finish-button">Finish</button>
     <script src="{js_file}"></script>
 </body>
 </html>
@@ -24,23 +26,45 @@ html_content = f"""
 
 # CSS Content
 css_content = """
-#image-container {
-    /* Styles for image container */
+#persons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    /* Additional styling */
 }
 
-#image-container img {
-    /* Styles for images */
+.person {
+    position: relative;
+    cursor: pointer;
+    /* Additional styling */
 }
 
-#reset-button, #finish-button {
+.selected {
+    /* Style for selected person */
+}
+
+.cross {
+    /* Style for cross mark */
+}
+
+#selected-person-name {
+    /* Style for displaying selected person's name */
+}
+
+#select-person-button, #reset-button {
     /* Styles for buttons */
 }
 """
 
 # JavaScript Content
 js_content = """
+var selectedPerson = '';
+var isSelected = false;
+
 window.onload = function() {
     loadImages();
+    document.getElementById('select-person-button').addEventListener('click', selectPerson);
+    document.getElementById('reset-button').addEventListener('click', resetGame);
 };
 
 function loadImages() {
@@ -50,29 +74,53 @@ function loadImages() {
 image_files = [f"'{file}'" for file in os.listdir(images_folder) if file.endswith(('.png', '.jpg', '.jpeg'))]
 js_content += ', '.join(image_files)
 
-js_content += """
-    ];
-    var container = document.getElementById('image-container');
+js_content += """]
+    var container = document.getElementById('persons-container');
 
     images.forEach(function(image) {
+        var imgDiv = document.createElement('div');
+        imgDiv.classList.add('person');
+
         var imgElement = document.createElement('img');
         imgElement.src = 'images/' + image;
-        container.appendChild(imgElement);
+        imgDiv.appendChild(imgElement);
 
-        var name = image.split('.')[0]; // Extract name from file name
+        var name = image.split('.')[0];
         var nameElement = document.createElement('div');
         nameElement.textContent = name;
-        container.appendChild(nameElement);
+        imgDiv.appendChild(nameElement);
+
+        imgDiv.addEventListener('click', function() {
+            toggleSelection(imgDiv, name);
+        });
+
+        container.appendChild(imgDiv);
     });
 }
 
-document.getElementById('reset-button').onclick = function() {
-    // Reset functionality
-};
+function toggleSelection(element, name) {
+    if (isSelected && selectedPerson !== name) {
+        return;
+    }
+    if (element.classList.contains('cross')) {
+        element.classList.remove('cross');
+    } else {
+        element.classList.add('cross');
+    }
+}
 
-document.getElementById('finish-button').onclick = function() {
-    // Finish functionality
-};
+function selectPerson() {
+    isSelected = !isSelected;
+    if (isSelected) {
+        // Additional logic for selecting a person
+    } else {
+        // Reset selection
+    }
+}
+
+function resetGame() {
+    // Reset game logic
+}
 """
 
 # Write HTML file

@@ -1,12 +1,29 @@
 
-#image-container {
-    /* Styles for image container */
+#persons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    /* Additional styling */
 }
 
-#image-container img {
-    /* Styles for images */
+.person {
+    position: relative;
+    cursor: pointer;
+    /* Additional styling */
 }
 
-#reset-button, #finish-button {
+.selected {
+    /* Style for selected person */
+}
+
+.cross {
+    /* Style for cross mark */
+}
+
+#selected-person-name {
+    /* Style for displaying selected person's name */
+}
+
+#select-person-button, #reset-button {
     /* Styles for buttons */
 }
