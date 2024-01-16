@@ -9,7 +9,7 @@ window.onload = function() {
 };
 
 function loadImages() {
-    var images = ['g.png', 'a.png', 'c.png', 'h.png', 'd.png', 'b.png', 'i.png', 'j.png', 'f.png', 'e.png']
+    var images = ['image1.jpg', 'image2.jpg', 'image3.jpg']; // Replace with actual image names
     var container = document.getElementById('persons-container');
 
     images.forEach(function(image) {
@@ -37,6 +37,9 @@ function toggleSelection(element, name) {
     if (isSelected && selectedPerson !== name) {
         return;
     }
+    isSelected = true;
+    selectedPerson = name;
+    document.getElementById('selected-person-name').textContent = 'Selected: ' + name;
     if (element.classList.contains('cross')) {
         element.classList.remove('cross');
     } else {
@@ -45,14 +48,19 @@ function toggleSelection(element, name) {
 }
 
 function selectPerson() {
-    isSelected = !isSelected;
-    if (isSelected) {
-        // Additional logic for selecting a person
-    } else {
-        // Reset selection
+    if (!isSelected) {
+        alert('Please select a person first.');
+        return;
     }
+    // Implement logic after person is selected
 }
 
 function resetGame() {
-    // Reset game logic
-}
+    isSelected = false;
+    selectedPerson = '';
+    document.getElementById('selected-person-name').textContent = '';
+    var crosses = document.querySelectorAll('.cross');
+    crosses.forEach(function(cross) {
+    cross.classList.remove('cross');
+    });
+    }

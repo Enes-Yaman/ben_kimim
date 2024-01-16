@@ -1,29 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+}
 
 #persons-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 10px;
-    /* Additional styling */
+    margin: 10px;
 }
 
 .person {
     position: relative;
     cursor: pointer;
-    /* Additional styling */
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+.person img {
+    max-width: 100%;
+    height: auto;
 }
 
 .selected {
-    /* Style for selected person */
+    border-color: green;
 }
 
 .cross {
-    /* Style for cross mark */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color:
+red;
+color: white;
+text-align: center;
+line-height: 20px;
+cursor: pointer;
 }
 
 #selected-person-name {
-    /* Style for displaying selected person's name */
+margin: 10px 0;
+font-size: 20px;
+text-align: center;
 }
 
 #select-person-button, #reset-button {
-    /* Styles for buttons */
+display: block;
+width: 200px;
+margin: 10px auto;
+padding: 10px;
+font-size: 16px;
+cursor: pointer;
 }
+
