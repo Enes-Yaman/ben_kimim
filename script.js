@@ -36,7 +36,7 @@ function toggleSelection(element, name) {
     if (!isSelected) {
         selectedPerson = name;
         isSelected = true;
-        document.getElementById('selected-person-name').textContent = 'Your character: ' + name;
+        document.getElementById('selected-person-name').textContent = 'Senin seçtiğin kişi: ' + name;
         element.classList.toggle('select0')
     } else {
         if (selectedPerson === name) {
