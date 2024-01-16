@@ -1,18 +1,17 @@
-
 var selectedPerson = '';
 var isSelected = false;
 
-window.onload = function() {
+window.onload = function () {
     loadImages();
-    document.getElementById('select-person-button').addEventListener('click', selectPerson);
     document.getElementById('reset-button').addEventListener('click', resetGame);
 };
 
+
 function loadImages() {
-    var images = ['image1.jpg', 'image2.jpg', 'image3.jpg']; // Replace with actual image names
+    var images = ['a.png', 'b.png', 'c.png', 'd.png', 'e.png', 'f.png', 'g.png', 'h.png', 'i.png', 'j.png']; // Replace with actual image names
     var container = document.getElementById('persons-container');
 
-    images.forEach(function(image) {
+    images.forEach(function (image) {
         var imgDiv = document.createElement('div');
         imgDiv.classList.add('person');
 
@@ -25,7 +24,7 @@ function loadImages() {
         nameElement.textContent = name;
         imgDiv.appendChild(nameElement);
 
-        imgDiv.addEventListener('click', function() {
+        imgDiv.addEventListener('click', function () {
             toggleSelection(imgDiv, name);
         });
 
@@ -34,33 +33,26 @@ function loadImages() {
 }
 
 function toggleSelection(element, name) {
-    if (isSelected && selectedPerson !== name) {
-        return;
-    }
-    isSelected = true;
-    selectedPerson = name;
-    document.getElementById('selected-person-name').textContent = 'Selected: ' + name;
-    if (element.classList.contains('cross')) {
-        element.classList.remove('cross');
-    } else {
-        element.classList.add('cross');
-    }
-}
-
-function selectPerson() {
     if (!isSelected) {
-        alert('Please select a person first.');
-        return;
+        selectedPerson = name;
+        isSelected = true;
+        document.getElementById('selected-person-name').textContent = 'Your character: ' + name;
+        element.classList.toggle('select0')
+    } else {
+        if (selectedPerson === name) {
+            if (element.classList.contains('select0')) {
+                element.classList.remove('select0')
+                element.classList.toggle('select12')
+            } else {
+                element.classList.toggle('select12')
+                element.classList.toggle('select0')
+            }
+        } else {
+            element.classList.toggle('select1');
+        }
     }
-    // Implement logic after person is selected
 }
 
 function resetGame() {
-    isSelected = false;
-    selectedPerson = '';
-    document.getElementById('selected-person-name').textContent = '';
-    var crosses = document.querySelectorAll('.cross');
-    crosses.forEach(function(cross) {
-    cross.classList.remove('cross');
-    });
-    }
+    location.reload();
+}

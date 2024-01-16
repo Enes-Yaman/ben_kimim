@@ -26,32 +26,41 @@ body {
     border-color: green;
 }
 
-.cross {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background-color:
-red;
-color: white;
-text-align: center;
-line-height: 20px;
-cursor: pointer;
+.select0 {
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.select1 {
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.select12 {
+    background: linear-gradient(to right, red 50%, green 50%);
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
 }
 
 #selected-person-name {
-margin: 10px 0;
-font-size: 20px;
-text-align: center;
+    margin: 10px 0;
+    font-size: 20px;
+    text-align: center;
 }
 
 #select-person-button, #reset-button {
-display: block;
-width: 200px;
-margin: 10px auto;
-padding: 10px;
-font-size: 16px;
-cursor: pointer;
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
-
